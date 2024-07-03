@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Picker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <!-- 
+        Menu: Logo, About, Movies, Search Bar, (Account), (Pick a Movie)
+        -> check order of menu items
+         -->
+
+    </header>
+    <main id="contentMoviePicker">
+
+        <h1></h1>
+        <!-- Text -->
+        <section>
+            <button id="btMoviePicker">Let's Pick a Movie</button>
+        </section>
+        <form id="moviePicker" class="hide">
+            <!-- Mood -->
+            <section class="question" id="question1">
+                <p>1. How are you today?</p>
+                <p><label for="happy">
+                    <input type="radio" id="happy" name="mood" value="happy" data-id="mood">
+                <br>Good</label></p>
+                <p><label for="neutral">
+                    <input type="radio" id="neutral" name="mood" value="neutral" data-id="mood">
+                <br>Neutral</label></p>
+                <p>
+                    <label for="sad"><input type="radio" id="sad" name="mood" value="sad" data-id="mood">
+                <br>Sad</label>
+                </p>
+                <button type="button" class="btNext hide" id="mood" data-id="question2">Next</button>
+            </section>
+            <!-- Occasion -->
+            <section class="question hide" id="question2">
+                <p>2. Who are you watching with?</p>
+                <p>
+                    <input type="radio" id="alone" name="occasion" value="alone" data-id="occasion">
+                    <label for="alone">I am watching by myself.</label>
+                </p>
+                <p>
+                    <input type="radio" id="date" name="occasion" value="date" data-id="occasion">
+                    <label for="date">Looking for a movie to watch on a date.</label>
+                </p>
+                <p>
+                    <input type="radio" id="friends" name="occasion" value="friends" data-id="occasion">
+                    <label for="friends">Having a movie night with friends.</label>
+                </p>
+                <p>
+                    <input type="radio" id="withFamily" name="occasion" value="with family" data-id="occasion">
+                    <label for="withFamily">I am watching with my parents or other relatives.</label>
+                </p>
+                <p>
+                    <input type="radio" id="withChildren" name="occasion" value="with children" data-id="occasion">
+                    <label for="date">Watching a movie with children.</label>
+                </p>
+                <button type="button" class="btNext hide" id="occasion" data-id="question3">Next</button>
+            </section>
+            <!-- TBD: Ratings 
+            Is the age-appropriateness rating of the movie important to you?
+            Please select all MPAA ratings that you’re okay with.-->
+            
+            <!-- Genre -->
+            <section class="question hide" id="question3">
+                <p>3. Please choose any genre you're interested in.</p>
+                <section id="genreList">
+                    <!-- populated via JS -->
+                </section>
+                <button type="button" class="btNext hide" id="genres" data-id="question4">Next</button>
+            </section>
+            <!-- Release Year-->
+            <section class="question hide" id="question4">
+                <p>4. How old would you like the movie to be?</p>
+                <p><input type="checkbox" id="noRestriction" name="releaseYear" value="noRestriction" data-id="releaseYear">
+                <label for="noRestriction">Doesn't matter.</label></p>
+                <p><input type="checkbox" id="lastFive" name="releaseYear" value="lastFive" data-id="releaseYear">
+                <label for="lastFive">Published in the last 5 years.</label></p>
+                <p><input type="checkbox" id="lastTen" name="releaseYear" value="lastTen" data-id="releaseYear">
+                <label for="lastTwenty">Published in the last 10 years.</label></p>
+                <p><input type="checkbox" id="lastTwenty" name="releaseYear" value="lastTwenty" data-id="releaseYear">
+                <label for="lastTwenty">Published in the last 20 years.</label></p>
+                <button type="button" class="btNext hide" data-id="question5" id="releaseYear">Next</input>
+            </section>
+            
+            <!--Streaming Services -->
+            <section class="question hide" id="question5">
+                <p>5. Which streaming services are available to you?</p>
+                <p><input type="checkbox" id="apple" name="streaming" value="apple" data-id="streaming">
+                <label for="apple">Apple TV</label></p>
+                <p><input type="checkbox" id="netflix" name="streaming" value="netflix" data-id="streaming">
+                <label for="netflix">Netflix</label></p>
+                <p><input type="checkbox" id="prime" name="streaming" value="prime" data-id="streaming">
+                <label for="prime">Prime Video</label></p>
+                <p><input type="checkbox" id="hbo" name="streaming" value="hbo" data-id="streaming">
+                <label for="hbo">HBO</label></p>
+                <button type="button" class="btNext hide" data-id="question6" id="streaming">Next</button> 
+            </section>
+            <!-- additional tags -->
+            <section class="question hide" id="question6">
+                <p><input type="checkbox" id="based on book" name="genre" value="based on book">
+                <label for="based on book">Movies based on a book</label><br></p>
+                <p><input type="checkbox" id="christmas" name="genre" value="christmas">
+                <label for="christmas">Christmas Movies</label><br></p>
+                <p><input type="checkbox" id="italo western" name="genre" value="italo western">
+                <label for="italo western">Italo Western</label><br></p>
+                <p><input type="checkbox" id="legal drama" name="genre" value="legal drama">
+                <label for="legal drama">Courtroom Dramas</label><br></p>
+                <p><input type="checkbox" id="superhero" name="genre" value="superhero">
+                <label for="superhero">Superhero Movies</label><br></p>
+                <p><input type="checkbox" id="true story" name="genre" value="true story">
+                <label for="true story">Movies based on a true story</label><br></p>
+                <p><input type="checkbox" id="with pre- or sequel" name="genre" value="with pre- or sequel">
+                <label for="with pre- or sequel">Movies that are part of a franchise</label><br></p>
+                <p><button type="button" id="btSendMovieForm">Get Movie</button></p>
+            </section>
+                        
+        </form>
+       
+        <section id="data"></section>
+    </main>
+   
+    <script src="script.js"></script>
+    <script src="homepage.js"></script>
+</body>
+</html>
