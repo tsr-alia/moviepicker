@@ -27,7 +27,7 @@
                 <p>1. How are you today?</p>
                 <p><label for="happy">
                     <input type="radio" id="happy" name="mood" value="happy" data-id="mood">
-                <br>Good</label></p>
+                <br>Happy</label></p>
                 <p><label for="neutral">
                     <input type="radio" id="neutral" name="mood" value="neutral" data-id="mood">
                 <br>Neutral</label></p>
@@ -77,13 +77,13 @@
             <!-- Release Year-->
             <section class="question hide" id="question4">
                 <p>4. How old would you like the movie to be?</p>
-                <p><input type="checkbox" id="noRestriction" name="releaseYear" value="noRestriction" data-id="releaseYear">
+                <p><input type="radio" id="noRestriction" name="releaseYear" value="noRestriction" data-id="releaseYear">
                 <label for="noRestriction">Doesn't matter.</label></p>
-                <p><input type="checkbox" id="lastFive" name="releaseYear" value="lastFive" data-id="releaseYear">
+                <p><input type="radio" id="lastFive" name="releaseYear" value="lastFive" data-id="releaseYear">
                 <label for="lastFive">Published in the last 5 years.</label></p>
-                <p><input type="checkbox" id="lastTen" name="releaseYear" value="lastTen" data-id="releaseYear">
+                <p><input type="radio" id="lastTen" name="releaseYear" value="lastTen" data-id="releaseYear">
                 <label for="lastTwenty">Published in the last 10 years.</label></p>
-                <p><input type="checkbox" id="lastTwenty" name="releaseYear" value="lastTwenty" data-id="releaseYear">
+                <p><input type="radio" id="lastTwenty" name="releaseYear" value="lastTwenty" data-id="releaseYear">
                 <label for="lastTwenty">Published in the last 20 years.</label></p>
                 <button type="button" class="btNext hide" data-id="question5" id="releaseYear">Next</input>
             </section>
@@ -103,19 +103,19 @@
             </section>
             <!-- additional tags -->
             <section class="question hide" id="question6">
-                <p><input type="checkbox" id="based on book" name="genre" value="based on book">
+                <p><input type="checkbox" id="based on book" name="tag" value="based on book">
                 <label for="based on book">Movies based on a book</label><br></p>
-                <p><input type="checkbox" id="christmas" name="genre" value="christmas">
+                <p><input type="checkbox" id="christmas" name="tag" value="christmas">
                 <label for="christmas">Christmas Movies</label><br></p>
-                <p><input type="checkbox" id="italo western" name="genre" value="italo western">
+                <p><input type="checkbox" id="italo western" name="tag" value="italo western">
                 <label for="italo western">Italo Western</label><br></p>
-                <p><input type="checkbox" id="legal drama" name="genre" value="legal drama">
+                <p><input type="checkbox" id="legal drama" name="tag" value="legal drama">
                 <label for="legal drama">Courtroom Dramas</label><br></p>
-                <p><input type="checkbox" id="superhero" name="genre" value="superhero">
+                <p><input type="checkbox" id="superhero" name="tag" value="superhero">
                 <label for="superhero">Superhero Movies</label><br></p>
-                <p><input type="checkbox" id="true story" name="genre" value="true story">
+                <p><input type="checkbox" id="true story" name="tag" value="true story">
                 <label for="true story">Movies based on a true story</label><br></p>
-                <p><input type="checkbox" id="with pre- or sequel" name="genre" value="with pre- or sequel">
+                <p><input type="checkbox" id="with pre- or sequel" name="tag" value="with pre- or sequel">
                 <label for="with pre- or sequel">Movies that are part of a franchise</label><br></p>
                 <p><button type="button" id="btSendMovieForm">Get Movie</button></p>
             </section>
