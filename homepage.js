@@ -1,9 +1,10 @@
 let btMoviePickerStart = document.querySelector("#btMoviePicker");
 let contentMoviePicker = document.querySelector("#contentMoviePicker");
-let btSendMovieForm = document.querySelector("#btSendForm");
+let btSendMovieForm = document.querySelector("#btSendMovieForm");
 let formMoviePicker = document.querySelector("#moviePicker");
 let inputFieldsMoviePicker = document.querySelectorAll("#moviePicker input");
 let btNext = document.querySelectorAll("#moviePicker .btNext");
+let currentYear = new Date().getFullYear();
 
 
 // display movie picker
@@ -12,10 +13,11 @@ function showMoviePicker() {
     this.style.display = "none";
 }
 
-// tbd: make a function that hides the button as soon as nothing is selected anymore
+// show form
+// tbd: make a function that hides the button when nothing is selected anymore
 function showNextButton() {
     let id = this.getAttribute("data-id");
-    document.querySelector(`.btNext#${id}`).style.display = "block";
+    document.querySelector(`.btNext#${id}`).classList.remove("hide");
 }
 
 function showNextSection() {
@@ -23,9 +25,6 @@ function showNextSection() {
     console.log(id);    
     document.querySelector(`#${id}`).classList.remove("hide");
 }
-
-
-
 
 // fetch data for forms and filters from API
 let urlShows = "http://localhost:3000/shows";
@@ -45,7 +44,6 @@ async function getData(url, action) {
     }
     
 }
-
 
 // tbd: pre-filter movies and possible values for each step in the form
 function populateGenres(data) {
@@ -96,39 +94,97 @@ function populateGenres(data) {
         // });
 }
 
-// function populateAdditionalTags(data) {
-//     let tags = [];
-//     for (let item of data) {
-//         for (let tag of item.additionalTags) {
-//             if (!tags.includes(tag)) {
-//                 tags.push(tag);
-//             }
-//         }        
-//     }
-//     tags.sort();
-//     let elTagList = document.querySelector("#tagList");
-//     let content = "";
-//     for (let tag of tags) {
-//         console.log("Test");
-//         content += 
-//         `<p><input type="checkbox" id="${tag}" name="genre" value="${tag}">
-//         <label for="${tag}">...</label><br></p>
-//         `;
-//     }
-//     console.log(content);
-//     elTagList.innerHTML = content;
-// }
+// process form data
+function grabFormData(data) {
+    let mood = formMoviePicker.querySelector('input[name="mood"]:checked').value;
+    let occasion = formMoviePicker.querySelector('input[name="occasion"]:checked').value;
+    let genres = [];
+    for (let genre of formMoviePicker.querySelectorAll('input[name="genre"]:checked')) {
+        genres.push(genre.value);
+    };
+    let releaseYear = formMoviePicker.querySelector('input[name="releaseYear"]:checked').value;
+    let streaming = [];
+    for (let service of formMoviePicker.querySelectorAll('input[name="streaming"]:checked')) {
+        streaming.push(service.value);
+    };
+    let additionalTags = [];
+    for (let tag of formMoviePicker.querySelectorAll('input[name="tag"]:checked')) {
+        additionalTags.push(tag.value);
+    };
+    console.log(mood, occasion, genres, releaseYear, streaming, additionalTags)
+;
+
+    let result = data.filter((movie) => {
+        // tbd "pt" is going to be dynamic when more streaming availability data available
+        
+        let matchStreaming = false;
+        if (movie.streamingOptions.pt !== undefined) {
+            matchStreaming = movie.streamingOptions.pt.some( (item) => {
+                return streaming.includes(item.service.id);
+                }
+            );
+        }
+        let matchMood = movie.mood.includes(mood);
+        let matchOccasion = movie.occasion.includes(occasion);
+        let matchGenre = movie.genres.some( (item) => {
+                return genres.includes(item.id);
+                }
+            );
+        console.log(matchGenre);
+
+        let matchYear = false;
+        matchYear = matchReleaseYear(releaseYear, movie);
+
+        let matchTags = false;
+        if (additionalTags.length > 0 && movie.additionalTags.length > 0) {
+            let matchTags = movie.additionalTags.some( (item) => {
+                return additionalTags.includes(item);
+                }
+            );
+        }
+        console.log(movie.title);
+        return (
+            (matchStreaming && matchMood && matchOccasion && matchGenre && matchYear && matchTags) ||
+            (matchStreaming && matchMood && matchOccasion && matchGenre && matchYear) ||
+            (matchStreaming && matchMood && matchOccasion && matchGenre) ||
+            (matchStreaming && matchMood && matchOccasion) ||
+            (matchStreaming && matchMood)
+        );
+    })
+    console.log(result);
+    
+
+}
+
+function matchReleaseYear(releaseYear, movie) {
+    console.log(releaseYear);
+    if (releaseYear !== "noRestriction") {
+        if (releaseYear === "lastTwenty" && movie.releaseYear >= (currentYear - 20)) {
+            return true;
+        } else if (releaseYear === "lastTen" && movie.releaseYear >= (currentYear - 10)) {
+            return true;
+        } else if (releaseYear === "lastFive" && movie.releaseYear >= (currentYear - 5)) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return true;
+    }
+}
 
 getData(urlShows, populateGenres);
-// getData(urlShows, populateAdditionalTags);
+
 btMoviePickerStart.addEventListener("click", showMoviePicker);
 for (let inputfield of inputFieldsMoviePicker) {
     inputfield.addEventListener("click", showNextButton);
 }
-
 for (let bt of btNext) {
     bt.addEventListener("click", showNextSection);
 }
+
+btSendMovieForm.addEventListener("click", () => getData(urlShows, grabFormData));
+
 
 
 
