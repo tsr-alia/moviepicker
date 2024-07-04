@@ -1,3 +1,118 @@
+:root {
+    --white: #F4F4F4;
+    --blackBackground: rgba(60,60,60,0.5);
+    --whiteBackground: rgba(160,160,160,0.75);
+}
+
+@import url("../assests/cssreset.css");
+
+@font-face {
+    font-family: "Lovelo";
+    src:
+      local("Lovelo-Black"),
+      url("fonts/Lovelo-Black.ttf") format("tff");
+}
+
+@font-face {
+    font-family: "Montserrat-Medium";
+    src:
+      local("Montserrat-Medium"),
+      url("fonts/Montserrat-Medium.ttf") format("tff");
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src:
+      local("Montserat-Regular"),
+      url("fonts/Montserrat-Regular.ttf") format("tff");
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src:
+      local("Montserrat-Bold"),
+      url("fonts/Montserrat-Bold.ttf") format("tff");
+}
+
+* {
+    color: var(--white);
+    /* font-family: "Montserat-Regular", Arial, sans-serif; */
+}
 .hide {
     display: none;
+}
+
+.frame {
+    border: 4px solid var(--white);
+}
+
+body {
+    background-image: url("images/movies_background.webp");
+}
+
+h1 {
+    font-family: Lovelo, Arial, sans-serif;
+    
+}
+
+#moviePicker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--blackBackground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moviePickerButton button {
+    padding: 1rem;
+    border: 4px solid var(--white);
+}
+
+/* Movie Picker Form */
+
+input[type="radio"] {
+    opacity: 0;
+    position: fixed; 
+    width: 0;
+    /* border: 4px solid var(--white); */
+  }
+
+section.question label, section.question p:first-child, section.question button  {
+    font-family: "Montserrat-Medium", Arial, sans-serif;
+    padding: 1rem;
+    margin: 0.5rem;
+    border: 2px solid var(--white);
+    border-radius: 4px;
+    background-color: var(--blackBackground);
+    font-size: 1.25rem;
+    display: block;
+    width: 100%;
+
+}
+
+#movieModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(170,170,170,0.5);
+    z-index: 1;
+}
+
+#movieModal > section {
+    position: relative;
+   
+    z-index: 2;
+}
+
+@media only screen and (min-width: 769px) {
+    #movieModal section {
+        width: 60%;
+        margin: auto;
+    }
 }
