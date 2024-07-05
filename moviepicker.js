@@ -4,9 +4,12 @@ let btSendMovieForm = document.querySelector("#btSendMovieForm");
 let formMoviePicker = document.querySelector("#moviePickerForm");
 let inputFieldsMoviePicker = document.querySelectorAll("#moviePickerForm input");
 let btNext = document.querySelectorAll("#moviePickerForm .btNext");
+let btBack = document.querySelectorAll("#moviePickerForm .btBack");
 let elMovieModal = document.querySelector("#movieModal");
 let currentYear = new Date().getFullYear();
 let elMovieThumbnail = document.querySelector("#movieThumbnail");
+let urlShows = "http://localhost:3000/shows";
+// let urlTags = "http://localhost:3000/tags";
 
 
 // show form
@@ -16,18 +19,15 @@ function showNextButton() {
     document.querySelector(`.btNext#${id}`).classList.remove("hide");
 }
 
-function showNextSection() {
-    let idNext = this.getAttribute("data-id-next");
-    document.querySelector(`#${idNext}`).classList.remove("hide");
-   
-    let idThis = this.getAttribute("data-id-this");
-    document.querySelector(`#${idThis}`).classList.add("hide");
-    
+function showSection() {
+    let idShow = this.getAttribute("data-id-show");
+    document.querySelector(`#${idShow}`).classList.remove("hide");
+    let idHide = this.getAttribute("data-id-hide");
+    document.querySelector(`#${idHide}`).classList.add("hide");
 }
 
 // fetch data for forms and filters from API
-let urlShows = "http://localhost:3000/shows";
-// let urlTags = "http://localhost:3000/tags";
+
 
 async function getData(url, action) {
     try {
@@ -37,15 +37,15 @@ async function getData(url, action) {
         }
         const data = await response.json();
        
-        action(data);
+        await action(data);
     } catch (error) {
         alert("The following error has occured: " + error)
     }
 }
 
 // tbd: pre-filter movies and possible values for each step in the form
-function populateGenres(data) {
-    console.log("Inside functionHere");
+async function populateGenres(data) {
+    console.log("Inside function");
     let genres = [];
     for (let item of data) {
         for (let genre of item.genres) {
@@ -225,18 +225,20 @@ function matchReleaseYear(releaseYear, movie) {
 
 function showMovie(movie, formData) {
     elMovieThumbnail.src = movie.imageSet.verticalPoster.w240;
-
     elMovieModal.classList.remove("hide");
 }
 
 getData(urlShows, populateGenres);
-console.log("Ouside Function Here");
+console.log("Outside Function");
 
 for (let inputfield of inputFieldsMoviePicker) {
     inputfield.addEventListener("click", showNextButton);
 }
 for (let bt of btNext) {
-    bt.addEventListener("click", showNextSection);
+    bt.addEventListener("click", showSection);
+}
+for (let bt of btBack) {
+    bt.addEventListener("click", showSection);
 }
 
 btSendMovieForm.addEventListener("click", pickAMovie);
@@ -251,4 +253,4 @@ formMoviePicker.querySelector('input[value="friends"]').checked = true;
 formMoviePicker.querySelector('input[value="20"]').checked = true;
 formMoviePicker.querySelector('input[value="book"]').checked = true;
 
-// pickAMovie();
+pickAMovie();

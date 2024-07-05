@@ -1,10 +1,11 @@
+@import url("../assests/cssreset.css");
+
 :root {
     --white: #F4F4F4;
     --blackBackground: rgba(60,60,60,0.5);
     --whiteBackground: rgba(160,160,160,0.75);
+    --colorful: rgba(231,76,60,1);
 }
-
-@import url("../assests/cssreset.css");
 
 @font-face {
     font-family: "Lovelo";
@@ -52,19 +53,17 @@ body {
 
 h1 {
     font-family: Lovelo, Arial, sans-serif;
-    
 }
 
 #moviePicker {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
     background-color: var(--blackBackground);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#moviePickerForm {
+    min-width: 60%;
 }
 
 .moviePickerButton button {
@@ -81,7 +80,8 @@ input[type="radio"] {
     /* border: 4px solid var(--white); */
   }
 
-section.question label, section.question p:first-child, section.question button  {
+  /* Form Buttons, Input and Questions */
+section.question label, section.question p:first-child, section.question .btNext, #btSendMovieForm {
     font-family: "Montserrat-Medium", Arial, sans-serif;
     padding: 1rem;
     margin: 0.5rem;
@@ -91,7 +91,25 @@ section.question label, section.question p:first-child, section.question button 
     font-size: 1.25rem;
     display: block;
     width: 100%;
+}
 
+/* Back Button */
+section.question .btBack {
+    border: none;
+    background-color: unset;
+}
+
+section.question .btBack:hover {
+    color: var(--colorful);
+}
+
+i {
+    color: inherit;
+    margin: 0.25rem;
+}
+
+section.question label:hover, section.question .btNext:hover, section.question label:checked {
+    background-color: var(--colorful);
 }
 
 #movieModal {
