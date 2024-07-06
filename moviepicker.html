@@ -20,78 +20,66 @@
         <section id="moviePicker">
             <form id="moviePickerForm">
                 <!-- Mood -->
-                <section class="question" id="question1">
+                <section class="question" id="question1" data-id-section="mood">
                     <p>1. How are you today?</p>
-                    <a href="">
-                        <label for="happy">
-                            <input type="radio" id="happy" name="mood" value="happy" data-id="mood">
-                        Happy</label>
-                    </a>
+                    <label for="happy">
+                        <input type="radio" id="happy" name="mood" value="happy" data-id="mood">
+                    Happy</label>
                     <label for="neutral">
                         <input type="radio" id="neutral" name="mood" value="neutral" data-id="mood">
                     Neutral</label>
-                    
-                        <label for="sad"><input type="radio" id="sad" name="mood" value="sad" data-id="mood">
+                    <label for="sad">
+                        <input type="radio" id="sad" name="mood" value="sad" data-id="mood">
                     Sad</label>
-                    
-                    <button type="button" class="btNext hide" id="mood" data-id-hide="question1" data-id-show="question2">Next</button>
+                    <p><button type="button" class="btNext hide" id="mood" data-id-hide="question1" data-id-show="question2">Next</button></p>
                 </section>
                 <!-- Occasion -->
-                <section class="question hide" id="question2">
+                <section class="question hide" id="question2" data-id-section="occasion">
                     <p>2. Who are you watching with?</p>
+                    <label for="alone"><input type="radio" id="alone" name="occasion" value="alone" data-id="occasion">I am watching by myself.</label>
+                    <label for="date"><input type="radio" id="date" name="occasion" value="date" data-id="occasion">Looking for a movie to watch on a date.</label>
+                    <label for="friends"><input type="radio" id="friends" name="occasion" value="friends" data-id="occasion">Having a movie night with friends.</label>
+                    <label for="withFamily"><input type="radio" id="withFamily" name="occasion" value="withFamily" data-id="occasion">I am watching with my parents or other relatives.</label>
+                    <label for="withChildren"><input type="radio" id="withChildren" name="occasion" value="withChildren" data-id="occasion">Watching a movie with children.</label>
                     <p>
-                        <input type="radio" id="alone" name="occasion" value="alone" data-id="occasion">
-                        <label for="alone">I am watching by myself.</label>
+                        <button type="button" class="btNext hide" id="occasion"  data-id-hide="question2" data-id-show="question3">Next</button>
+                        <button type="button" class="btBack" data-id-hide="question2" data-id-show="question1"><i class="fa-solid fa-arrow-left"></i>Go Back</button>
                     </p>
-                    <p>
-                        <input type="radio" id="date" name="occasion" value="date" data-id="occasion">
-                        <label for="date">Looking for a movie to watch on a date.</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="friends" name="occasion" value="friends" data-id="occasion">
-                        <label for="friends">Having a movie night with friends.</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="withFamily" name="occasion" value="withFamily" data-id="occasion">
-                        <label for="withFamily">I am watching with my parents or other relatives.</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="withChildren" name="occasion" value="withChildren" data-id="occasion">
-                        <label for="date">Watching a movie with children.</label>
-                    </p>
-                    <button type="button" class="btNext hide" id="occasion"  data-id-hide="question2" data-id-show="question3">Next</button>
-                    <button type="button" class="btBack" data-id-hide="question2" data-id-show="question1"><i class="fa-solid fa-arrow-left"></i>Go Back</button>
                 </section>
                 <!-- TBD: Ratings 
                 Is the age-appropriateness rating of the movie important to you?
                 Please select all MPAA ratings that you’re okay with.-->
                 
                 <!-- Genre -->
-                <section class="question hide" id="question3">
+                <section class="question hide" id="question3" data-id-section="genres">
                     <p>3. Please choose any genre you're interested in.</p>
                     <section id="genreList">
                         <!-- populated via JS -->
                     </section>
-                    <button type="button" class="btNext hide" id="genres"  data-id-hide="question3" data-id-show="question4">Next</button>
-                    <button type="button" class="btBack" data-id-hide="question3" data-id-show="question2"><i class="fa-solid fa-arrow-left"></i>Go Back</button>
+                    <p>
+                        <button type="button" class="btNext hide" id="genres"  data-id-hide="question3" data-id-show="question4">Next</button>
+                        <button type="button" class="btBack" data-id-hide="question3" data-id-show="question2"><i class="fa-solid fa-arrow-left"></i>Go Back</button>
+                    </p>
                 </section>
                 <!-- Release Year-->
-                <section class="question hide" id="question4">
+                <section class="question hide" id="question4" data-id-section="releaseYear">
                     <p>4. How old would you like the movie to be?</p>
-                    <p><input type="radio" id="noRestriction" name="releaseYear" value="noRestriction" data-id="releaseYear">
-                    <label for="noRestriction">Doesn't matter.</label></p>
-                    <p><input type="radio" id="lastFive" name="releaseYear" value="5" data-id="releaseYear">
-                    <label for="lastFive">Published in the last 5 years.</label></p>
-                    <p><input type="radio" id="lastTen" name="releaseYear" value="10" data-id="releaseYear">
-                    <label for="lastTen">Published in the last 10 years.</label></p>
-                    <p><input type="radio" id="lastTwenty" name="releaseYear" value="20" data-id="releaseYear">
-                    <label for="lastTwenty">Published in the last 20 years.</label></p>
-                    <button type="button" class="btNext hide"  data-id-hide="question4" data-id-show="question5" id="releaseYear">Next</button>
-                    <button type="button" class="btBack" data-id-show="question3" data-id-hide="question4"><i class="fa-solid fa-arrow-left"></i>Go Back</button>
+                    <input type="radio" id="noRestriction" name="releaseYear" value="noRestriction" data-id="releaseYear">
+                    <label for="noRestriction">Doesn't matter.</label>
+                    <input type="radio" id="lastFive" name="releaseYear" value="5" data-id="releaseYear">
+                    <label for="lastFive">Published in the last 5 years.</label>
+                    <input type="radio" id="lastTen" name="releaseYear" value="10" data-id="releaseYear">
+                    <label for="lastTen">Published in the last 10 years.</label>
+                    <input type="radio" id="lastTwenty" name="releaseYear" value="20" data-id="releaseYear">
+                    <label for="lastTwenty">Published in the last 20 years.</label>
+                    <p>
+                        <button type="button" class="btNext hide"  data-id-hide="question4" data-id-show="question5" id="releaseYear">Next</button>
+                        <button type="button" class="btBack" data-id-show="question3" data-id-hide="question4"><i class="fa-solid fa-arrow-left"></i>Go Back</button>
+                    </p>
                 </section>
                 
                 <!--Streaming Services -->
-                <section class="question hide" id="question5">
+                <section class="question hide" id="question5" data-id-section="streaming">
                     <p>5. Which streaming services are available to you?</p>
                     <p><input type="checkbox" id="apple" name="streaming" value="apple" data-id="streaming">
                     <label for="apple">Apple TV</label></p>
@@ -110,22 +98,25 @@
                 </section>
                 <!-- additional tags -->
                 <section class="question hide" id="question6">
-                    <p><input type="checkbox" id="book" name="tag" value="book">
-                    <label for="book">Movies based on a book</label><br></p>
-                    <p><input type="checkbox" id="christmas" name="tag" value="christmas">
-                    <label for="christmas">Christmas Movies</label><br></p>
-                    <p><input type="checkbox" id="italoWestern" name="tag" value="italoWestern">
-                    <label for="italoWestern">Italo Western</label><br></p>
-                    <p><input type="checkbox" id="legalDrama" name="tag" value="legalDrama">
-                    <label for="legalDrama">Courtroom Dramas</label><br></p>
-                    <p><input type="checkbox" id="superhero" name="tag" value="superhero">
-                    <label for="superhero">Superhero Movies</label><br></p>
-                    <p><input type="checkbox" id="trueStory" name="tag" value="trueStory">
-                    <label for="trueStory">Movies based on a true story</label><br></p>
-                    <p><input type="checkbox" id="franchise" name="tag" value="franchise">
-                    <label for="franchise">Movies that are part of a franchise</label><br></p>
-                    <p><button type="button" id="btSendMovieForm">Get Movie</button></p>
-                    <button type="button" class="btBack" data-id-hide="question6" data-id-show="question5"><i class="fa-solid fa-arrow-left"></i>Go Back</button> 
+                    <p>6. Choose any additional preferences! (optional)</p>
+                    <input type="checkbox" id="book" name="tag" value="book">
+                    <label for="book">Movies based on a book</label>
+                    <input type="checkbox" id="christmas" name="tag" value="christmas">
+                    <label for="christmas">Christmas Movies</label>
+                    <input type="checkbox" id="italoWestern" name="tag" value="italoWestern">
+                    <label for="italoWestern">Italo Western</label>
+                    <input type="checkbox" id="legalDrama" name="tag" value="legalDrama">
+                    <label for="legalDrama">Courtroom Dramas</label>
+                    <input type="checkbox" id="superhero" name="tag" value="superhero">
+                    <label for="superhero">Superhero Movies</label>
+                    <input type="checkbox" id="trueStory" name="tag" value="trueStory">
+                    <label for="trueStory">Movies based on a true story</label>
+                    <input type="checkbox" id="franchise" name="tag" value="franchise">
+                    <label for="franchise">Movies that are part of a franchise</label>
+                    <p>
+                        <button type="button" id="btSendMovieForm">Get Movie</button>
+                        <button type="button" class="btBack" data-id-hide="question6" data-id-show="question5"><i class="fa-solid fa-arrow-left"></i>Go Back</button>
+                    </p>
                 </section>
                             
             </form>
