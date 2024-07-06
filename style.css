@@ -1,50 +1,56 @@
-@import url("../assests/cssreset.css");
-
-:root {
-    --white: #F4F4F4;
-    --blackBackground: rgba(60,60,60,0.5);
-    --whiteBackground: rgba(160,160,160,0.75);
-    --colorful: rgba(231,76,60,1);
-}
+@import url("cssreset.css");
 
 @font-face {
     font-family: "Lovelo";
     src:
       local("Lovelo-Black"),
-      url("fonts/Lovelo-Black.ttf") format("tff");
+      url("fonts/Lovelo-Black.ttf") format("ttf");
 }
 
 @font-face {
     font-family: "Montserrat-Medium";
     src:
       local("Montserrat-Medium"),
-      url("fonts/Montserrat-Medium.ttf") format("tff");
+      url("fonts/Montserrat-Medium.ttf") format("ttf");
 }
 
 @font-face {
     font-family: "Montserrat-Regular";
     src:
-      local("Montserat-Regular"),
-      url("fonts/Montserrat-Regular.ttf") format("tff");
+      local("Montserrat-Regular"),
+      url("fonts/Montserrat-Regular.ttf") format("ttf");
 }
 
 @font-face {
-    font-family: "Montserrat-Bold";
+    font-family: "Montserrat-SemiBold";
     src:
       local("Montserrat-Bold"),
-      url("fonts/Montserrat-Bold.ttf") format("tff");
+      url("fonts/Montserrat-SemiBold.ttf") format("ttf");
 }
 
-* {
+/* @font-face {
+    font-family: 'HelveticaFontBold';
+    src: local('Helvetica');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'tertiaryFontBold';
+    src: local('Arial');
+    font-weight: 600;
+} */
+
+:root {
+    --white: #F4F4F4;
+    --blackBackground: rgba(60,60,60,0.5);
+    --whiteBackground: rgba(160,160,160,0.25);
+    --colorful: rgba(231,76,60,1);
+    --borderRadius: 4px;
+}
+
+*, p, ul {
     color: var(--white);
-    /* font-family: "Montserat-Regular", Arial, sans-serif; */
-}
-.hide {
-    display: none;
-}
-
-.frame {
-    border: 4px solid var(--white);
+    font-family: "Montserrat-Regular", Arial, sans-serif;
 }
 
 body {
@@ -55,32 +61,59 @@ h1 {
     font-family: Lovelo, Arial, sans-serif;
 }
 
+h2 {
+    font-size: 1.25rem;
+    font-family: "Montserrat-SemiBold", Arial, sans-serif;
+    margin: 0.5rem 0;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-family: "Lovelo";
+    margin: 0 0 1rem 0;
+}
+
+p {
+    margin: 0.5rem 0;
+}
+
+strong {
+    font-family: "Montserrat-SemiBold", Arial, sans-serif;
+    font-weight: bold;
+}
+
+/* MENU */
+nav {
+    background-color: var(--blackBackground);
+}
+
+nav ul {
+    display: flex;
+}
+
+
+/* MOVIE PICKER */
 #moviePicker {
     background-color: var(--blackBackground);
+    
+    min-height: 100vh;
+}
+
+#moviePickerForm {
+    min-width: 60%;
+    padding-top: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#moviePickerForm {
-    min-width: 60%;
-}
-
-.moviePickerButton button {
+/* .moviePickerButton button {
     padding: 1rem;
     border: 4px solid var(--white);
-}
+} */
 
-/* Movie Picker Form */
 
-input[type="radio"] {
-    opacity: 0;
-    position: fixed; 
-    width: 0;
-    /* border: 4px solid var(--white); */
-  }
-
-  /* Form Buttons, Input and Questions */
+/* Form Buttons, Input and Questions */
 section.question label, section.question p:first-child, section.question .btNext, #btSendMovieForm {
     font-family: "Montserrat-Medium", Arial, sans-serif;
     padding: 1rem;
@@ -91,6 +124,13 @@ section.question label, section.question p:first-child, section.question .btNext
     font-size: 1.25rem;
     display: block;
     width: 100%;
+}
+
+input[type="radio"] {
+    opacity: 0;
+    position: fixed; 
+    width: 0;
+    /* border: 4px solid var(--white); */
 }
 
 /* Back Button */
@@ -105,32 +145,120 @@ section.question .btBack:hover {
 
 i {
     color: inherit;
-    margin: 0.25rem;
+    font-size:inherit;
+    margin: 0 0.25rem;
 }
 
-section.question label:hover, section.question .btNext:hover, section.question label:checked {
+/* change button color on hover and when checked */
+section.question label:hover, section.question .btNext:hover, label.checked {
     background-color: var(--colorful);
 }
+
+/* MOVIE RECOMMANDATION MODAL */
 
 #movieModal {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: rgba(170,170,170,0.5);
     z-index: 1;
 }
 
 #movieModal > section {
     position: relative;
-   
     z-index: 2;
 }
 
-@media only screen and (min-width: 769px) {
-    #movieModal section {
-        width: 60%;
+@media only screen and (min-width: 1025px) {
+    #movieModal > section {
+        width: 75%;
         margin: auto;
     }
+}
+
+.frame {
+    border: 4px solid var(--white);
+    border-radius: var(--borderRadius);
+    padding: 1rem;
+}
+
+.movieColumns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-top: 2rem;
+}
+
+.movieColumns img {
+    /* flex: 0 1 auto; */
+}
+
+.tagLists {
+    margin: 1.5rem 0;
+    display: flex;
+    row-gap: 1rem;
+    flex-direction: column;
+}
+
+.tagList {
+    /* margin: 1rem; */
+}
+
+.tagList ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+.tag {
+    border: 3px solid var(--colorful);
+    border-radius: var(--borderRadius);
+    background-color: var(--blackBackground);
+    padding: 0.5rem;
+    /* margin: 1rem; */
+
+}
+
+.watchLink {
+    /* margin: 1rem 0; */
+}
+
+.watchLink a {
+    font-size: 1.25rem;
+    font-family: "Montserrat-Medium";
+    padding: 0.5rem;
+    margin: 0;
+    background-color: var(--colorful);
+    border: 3px solid var(--colorful);
+    border-radius: var(--borderRadius);
+    text-align: center;
+    display: inline-block;
+}
+
+.watchLink a:hover {
+    color: var(--colorful);
+    background-color: var(--blackBackground);
+    text-decoration: none;
+    /* border: 3px solid var(--white); */
+}
+
+@media only screen and (max-width: 768px) {
+    .movieColumns {
+        flex-wrap: wrap;
+    }
+
+    .movieColumns .tagLists {
+        margin-bottom: 0;
+    }
+}
+
+.hide {
+    display: none !important;
 }
