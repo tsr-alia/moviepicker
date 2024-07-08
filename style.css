@@ -393,10 +393,6 @@ section.question label:hover, section.question .btNext:hover, label.checked, #bt
     align-items: center;
 }
 
-/* #elRestartButton div {
-    text-align: center;
-} */
-
 @media only screen and (max-width: 768px) {
     .movieColumns {
         flex-wrap: wrap;
