@@ -13,6 +13,7 @@ Features to be implemented (excerpt):
 Implement a "Get Another Recommandation" Button that restarts the Movie Picker using the same user answers and gives a different recommandation
 Get browser locale and automatically match streaming availability against local options, add option to manually set location and streaming options
 Review and refine filter logic
+Dynamically Populate all the questions in the form (see genres)
 - Movie Overview: 
 A site with an excerpt of the movies in the database, filters can be used to filter against the same categories as in the Movie Picker
 - Automated database updates:
