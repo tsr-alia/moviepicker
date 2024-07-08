@@ -1,19 +1,18 @@
-let btMoviePickerStart = document.querySelector("#btMoviePicker");
+// DOM Elements
 let contentMoviePicker = document.querySelector("#moviePicker");
-let btSendMovieForm = document.querySelector("#btSendMovieForm");
 let formMoviePicker = document.querySelector("#moviePickerForm");
+let btNext = document.querySelectorAll("#moviePickerForm .btNext");
+let btBack = document.querySelectorAll("#moviePickerForm .btBack");
+let btSendMovieForm = document.querySelector("#btSendMovieForm");
 let elRestartButton = document.querySelector("#elRestartButton");
 let labelFieldsMoviePicker = document.querySelectorAll("#moviePickerForm label");
 let inputFieldsMoviePicker = document.querySelectorAll("#moviePickerForm input");
-let btNext = document.querySelectorAll("#moviePickerForm .btNext");
-let btBack = document.querySelectorAll("#moviePickerForm .btBack");
 let elMovieModal = document.querySelector("#movieModal");
+// global variables
 let currentYear = new Date().getFullYear();
-let elMovieThumbnail = document.querySelector("#movieThumbnail");
-let elMovieTitle = document.querySelector("#movieTitle");
 let urlShows = "http://localhost:3000/shows";
 // let urlTags = "http://localhost:3000/tags";
-
+// text to be shown for different tags, tbd: incorporate this in the database
 let tagsToText = {
     alone: "Alone",
     friends: "With Friends",
@@ -33,9 +32,10 @@ let tagsToText = {
     fantasy: "Fantasy"
 }
 
-// show buttons and check input fields in form
-// tbd: treat Any Genre button like radio button
-function checkInput() {
+// MOVIE PICKER FORM
+// show "next" buttons and change style of checked input fields in form
+// tbd: treat the "Any Genre" button like radio button
+function styleCheckedInputFields() {
     if (this.getAttribute("type") === "radio") {
         let idSection = this.getAttribute("data-id");
         let radioButtons = formMoviePicker.querySelectorAll(`[data-id-section="${idSection}"] input`);
@@ -77,13 +77,14 @@ function showSection() {
     document.querySelector(`#${idHide}`).classList.add("hide");
 }
 
+// MOVIE RECOMMANDATION MODAL
 function closeModal() {
     elMovieModal.classList.add("hide");
-    // contentMoviePicker.classList.remove("hide");
     document.querySelector("header nav").classList.remove("hide");
     elRestartButton.classList.remove("hide");
 }
 
+// MOVIE PICKER FUNCTIONALITY
 // fetch data from API
 async function getData(url, action) {
     try {
@@ -92,16 +93,14 @@ async function getData(url, action) {
             throw Error('There was a problem connecting to the API.');
         }
         const data = await response.json();
-       
         return await action(data);
     } catch (error) {
         alert("The following error has occured###: " + error)
     }
 }
 
-// tbd: pre-filter movies and possible values for each step in the form
+// get genres of movies and dynamically populate input fields in movie picker form, tbd: dynamically populate input fields for all questions in movie picker form
 async function populateGenres(data) {
-    console.log("Inside function");
     let genres = [];
     for (let item of data) {
         for (let genre of item.genres) {
@@ -129,20 +128,20 @@ async function populateGenres(data) {
     elGenreList.innerHTML = content;
     for (let inputfield of document.querySelectorAll("#genreList input")) {
         inputfield.addEventListener("click", showNextButton);
-        inputfield.addEventListener("click", checkInput);
+        inputfield.addEventListener("click", styleCheckedInputFields);
     }
 }
 
 // MOVIE PICKER
 async function pickAMovie() {
     let formData = grabFormData();
-    console.log("Form Data inside moviePicker: " + JSON.stringify(formData));
+    // console.log("Form Data inside moviePicker: " + JSON.stringify(formData));
     let queryURL = createQueryString(formData);
-    console.log("queryURL inside moviePicker: " + queryURL);
+    // console.log("queryURL inside moviePicker: " + queryURL);
     let movie = await getData(queryURL, async (data) => {
         return filterMovies(data, formData)});
-    console.log("movie inside moviePicker befor shwoing: ");
-    console.log(movie);
+    // console.log("movie inside moviePicker befor shwoing: ");
+    // console.log(movie);
     showMovie(movie, formData);
 }
 // grabFormData
@@ -161,8 +160,7 @@ function grabFormData() {
     let additionalTags = [];
     for (let tag of formMoviePicker.querySelectorAll('input[name="tag"]:checked')) {
         additionalTags.push(tag.value);
-    };
-    
+    }; 
     let formData = {
         streaming: [...streaming],
         mood: mood,
@@ -174,6 +172,7 @@ function grabFormData() {
     return formData;
 }
 
+// create query string to fetch a selection of movies
 function createQueryString(formData) {
     // tbd dynamically set streaming location
     let streamingLocation = "de";
@@ -181,7 +180,7 @@ function createQueryString(formData) {
     let queryURL = urlShows + `?streaming_${streamingLocation}_like=(${streamingQuery})&mood_like=${formData.mood}&occasion_like=${formData.occasion}`;
     return queryURL;
 }
-
+// further filter selection of movies and return one result
 async function filterMovies(movieData, formData) {
     console.log("movie Data before filterung:");
     console.log(movieData);
@@ -231,7 +230,7 @@ async function filterMovies(movieData, formData) {
     console.log(result);
     return result[0];
 }
-
+// check if the release year matches the users' input
 function matchReleaseYear(releaseYear, movie) {
     if (releaseYear !== "noRestriction") {
         if (movie.releaseYear >= (currentYear - releaseYear)) {
@@ -243,7 +242,7 @@ function matchReleaseYear(releaseYear, movie) {
         return true;
     }
 }
-
+// show movie in modal and comapre with user input
 function showMovie(movie, formData) {
     elMovieModal.classList.remove("hide");
     contentMoviePicker.classList.add("hide");
@@ -290,7 +289,6 @@ function showMovie(movie, formData) {
                 </section>
             `;
         }
-        
         content += `
                 </section>
                 </section>        
@@ -307,6 +305,7 @@ function showMovie(movie, formData) {
            `;
         
         let shuffledsteamingOption = movie.streamingOptions.de.sort((a, b) => 0.5 - Math.random());
+        // tbd show all streaming options
         for (let steamingOption of shuffledsteamingOption) {
             if (formData.streaming.includes(steamingOption.service.id)) {
                 content += ` <section class="watchLink"><a href="${steamingOption.link}" target="_blank">Watch now on ${steamingOption.service.name} <i class="fa-solid fa-film"></i></a></section>`;
@@ -332,7 +331,7 @@ function showMovie(movie, formData) {
     document.querySelector("header nav").classList.add("hide");
     document.querySelector("#closeBt").addEventListener("click", closeModal);
 }
-
+// create tags for movie and check against user input
 function createResultTags(movie, formData, dataCategory) {
     let tagList = "";
     for (let item of movie[dataCategory]) {
@@ -357,8 +356,8 @@ function createResultTags(movie, formData, dataCategory) {
     return tagList;
 }
 
+// CALL Initializing FUNCTIONS
 async function callPopulateGenres() {
-    console.log("inside function2");
     await getData(urlShows, populateGenres);
 
     // for debugging
@@ -374,15 +373,12 @@ async function callPopulateGenres() {
     // pickAMovie();
 }
 callPopulateGenres()
-// await getData(urlShows, populateGenres);
-console.log("Outside Function");
 
 
 // EVENT LISTENERS
-
 for (let inputfield of inputFieldsMoviePicker) {
     inputfield.addEventListener("click", showNextButton);
-    inputfield.addEventListener("click", checkInput);
+    inputfield.addEventListener("click", styleCheckedInputFields);
 }
 for (let bt of btNext) {
     bt.addEventListener("click", showSection);
