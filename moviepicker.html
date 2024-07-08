@@ -6,6 +6,7 @@
     <title>Movie Picker</title>
     <link rel="stylesheet" href="../assests/fontawesome/fontawesome-free-6.5.2-web/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="image/x-icon" href="images/moviepicker_favicon.ico">
 </head>
 <body>
     <header>
@@ -15,8 +16,8 @@
             -->
         <nav>
             <ul id="topMenu">
-                <li>
-                    <p class="logoImage"><img src="images/moviepicker_logo.png"></p>
+                <li class="logoImage">
+                    <a href="index.html"><img src="images/moviepicker_logo.png"></a>
                 </li>
                 <li class="icon" id="liOpen">
                     <a aria-label="Open the menu" tabindex="0">
@@ -42,7 +43,7 @@
             <form id="moviePickerForm">
                 <!-- Mood -->
                 <section class="question" id="question1" data-id-section="mood">
-                    <p>1. How are you today?</p>
+                    <p class="questionText">1. How are you today?</p>
                     <label for="happy">
                         <input type="radio" id="happy" name="mood" value="happy" data-id="mood">
                     Happy</label>
@@ -56,7 +57,7 @@
                 </section>
                 <!-- Occasion -->
                 <section class="question hide" id="question2" data-id-section="occasion">
-                    <p>2. Who are you watching with?</p>
+                    <p class="questionText">2. Who are you watching with?</p>
                     <label for="alone"><input type="radio" id="alone" name="occasion" value="alone" data-id="occasion">I am watching by myself.</label>
                     <label for="date"><input type="radio" id="date" name="occasion" value="date" data-id="occasion">Looking for a movie to watch on a date.</label>
                     <label for="friends"><input type="radio" id="friends" name="occasion" value="friends" data-id="occasion">Having a movie night with friends.</label>
@@ -73,7 +74,7 @@
                 
                 <!-- Genre -->
                 <section class="question hide" id="question3" data-id-section="genres">
-                    <p>3. Please choose any genre you're interested in.</p>
+                    <p class="questionText">3. Please choose any genre you're interested in.</p>
                     <section id="genreList">
                         <!-- populated via JS -->
                     </section>
@@ -84,7 +85,7 @@
                 </section>
                 <!-- Release Year-->
                 <section class="question hide" id="question4" data-id-section="releaseYear">
-                    <p>4. How old would you like the movie to be?</p>
+                    <p class="questionText">4. How old would you like the movie to be?</p>
                     <input type="radio" id="noRestriction" name="releaseYear" value="noRestriction" data-id="releaseYear">
                     <label for="noRestriction">Doesn't matter.</label>
                     <input type="radio" id="lastFive" name="releaseYear" value="5" data-id="releaseYear">
@@ -101,7 +102,7 @@
                 
                 <!--Streaming Services -->
                 <section class="question hide" id="question5" data-id-section="streaming">
-                    <p>5. Which streaming services are available to you?</p>
+                    <p class="questionText">5. Which streaming services are available to you?</p>
                     <p><input type="checkbox" id="apple" name="streaming" value="apple" data-id="streaming">
                     <label for="apple">Apple TV</label></p>
                     <p><input type="checkbox" id="netflix" name="streaming" value="netflix" data-id="streaming">
@@ -119,7 +120,7 @@
                 </section>
                 <!-- additional tags -->
                 <section class="question hide" id="question6">
-                    <p>6. Choose any additional preferences! (optional)</p>
+                    <p class="questionText">6. Choose any additional preferences! (optional)</p>
                     <input type="checkbox" id="book" name="tag" value="book">
                     <label for="book">Movies based on a book</label>
                     <input type="checkbox" id="christmas" name="tag" value="christmas">
@@ -163,6 +164,7 @@
         </section>
 
     </div>
+    <script src="script.js"></script>
     <script src="moviepicker.js"></script>
 </body>
 </html>

@@ -88,6 +88,15 @@ strong {
     display: none !important;
 }
 
+main {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.25rem;
+    }
+}
 /* MENU */
 
 nav {
@@ -112,16 +121,12 @@ nav ul#mainMenu {
 
 nav ul li {
     align-content: center;
-    margin: 1rem 0;
+    margin: 1rem;
 }
 
 .logoImage {
     width: 100%;
 }
-
-/* .logoImage img {
-    margin: 1rem;
-} */
 
 nav ul li a {
     display: inline-block;
@@ -166,6 +171,10 @@ a.linkMoviePicker:hover {
         flex-direction: column;
     }
 
+    nav ul {
+        column-gap: 0;
+    }
+
     nav ul#mainMenu {
         flex-direction: column;
     }
@@ -173,6 +182,17 @@ a.linkMoviePicker:hover {
     nav ul#mainMenu {
         text-align: right;
         display: none;
+    }
+
+    nav ul li {
+        align-content: center;
+        margin: 0.25rem;
+    }
+
+    nav ul li a {
+        display: inline-block;
+        padding: 0.5rem;
+        font-size: 1rem;
     }
 }
 
@@ -216,8 +236,12 @@ h2 .btMoviePicker {
     justify-content: center;
 }
 
+section.question {
+    max-width: 100%;
+}
+
 /* Form Buttons, Input and Questions */
-section.question label, section.question p:first-child, .btNext, #btSendMovieForm {
+section.question label, section.question .questionText, .btNext, #btSendMovieForm {
     font-family: "Montserrat-Medium", Arial, sans-serif;
     padding: 1rem;
     margin: 0.5rem;
@@ -229,8 +253,17 @@ section.question label, section.question p:first-child, .btNext, #btSendMovieFor
     width: 100%;
 }
 
-section.question p {
-    margin: 1rem 0;
+section.question p.questionText {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+section.question label {
+    cursor: pointer;
+}
+
+.btNext {
+    margin-top: 1.5rem;
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -393,13 +426,26 @@ section.question label:hover, section.question .btNext:hover, label.checked, #bt
     align-items: center;
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
+    section.question label, section.question .questionText, .btNext, #btSendMovieForm {
+        font-size: 1rem;
+    }
+
     .movieColumns {
         flex-wrap: wrap;
     }
 
     .movieColumns .tagLists {
         margin-bottom: 0;
+    }
+
+    .watchLink a {
+        font-size: 1rem;
+    }
+
+    #closeBt {
+        top: 0.5rem;
+        right: 0.5rem;
     }
 }
 

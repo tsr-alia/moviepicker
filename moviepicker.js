@@ -256,7 +256,7 @@ function showMovie(movie, formData) {
                 <p>Sorry, we couldn't find any results!</p>
             </section>
             <section class="watchLink">
-                <a id="btMoviePicker" href="/project1/moviepicker.html"><i class="fa-solid fa-arrows-rotate"></i> Restart the Movie Picker</a></section>
+                <a href="/project1/moviepicker.html"><i class="fa-solid fa-arrows-rotate"></i> Restart the Movie Picker</a></section>
                 <div id="closeBt"><i class="fa-solid fa-x"></i></div>
             </section>
         </section>
