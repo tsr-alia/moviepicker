@@ -12,8 +12,29 @@
         <!-- 
         Menu: Logo, About, Movies, Search Bar, (Account), (Pick a Movie)
         -> check order of menu items
-         -->
-
+            -->
+        <nav>
+            <ul id="topMenu">
+                <li>
+                    <p class="logoImage"><img src="images/moviepicker_logo.png"></p>
+                </li>
+                <li class="icon" id="liOpen">
+                    <a aria-label="Open the menu" tabindex="0">
+                        <i id="menuIcon" aria-hidden="true" data-icon="&#9776;" class="fa-solid fa-bars"></i>
+                    </a>
+                </li>
+                <li class="icon" style="display: none;" id="liClose">
+                    <a aria-label="menuIconClose the menu" tabindex="0">
+                        <i id="menuIconClose" aria-hidden="true" data-icon="&#10060;" class="fa-solid fa-x"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul id="mainMenu">    
+                <li><a href="#">About</a></li>
+                <li><a class="linkMoviePicker" href="moviepicker.html">Pick a Movie</a></li>
+            </ul>
+        </nav>
+    
     </header>
     <main>
         
@@ -136,6 +157,7 @@
         </section>
 
     </div>
+    <script src="script.js"></script>
     <script src="moviepicker.js"></script>
 </body>
 </html>

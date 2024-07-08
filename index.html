@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Picker</title>
+    <link rel="stylesheet" href="../assests/fontawesome/fontawesome-free-6.5.2-web/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,29 +14,38 @@
         -> check order of menu items
          -->
         <nav>
-            <p class="logoImage"><img src="images/moviepicker_logo.png"></p>
-            <ul>
-                <li class="icon">
-                    <a aria-label="Open the menu" tabindex="0"><i id="menuIcon" aria-hidden="true" data-icon="&#9776;" class="fa-solid fa-bars"></i></a>
+            <ul id="topMenu">
+                <li>
+                    <p class="logoImage"><img src="images/moviepicker_logo.png"></p>
                 </li>
-                
-                <li><a href="/project1/about.html">About</a></li>
-                <li><a href="/project1/moviepicker.html">Pick a Movie</a></li>
+                <li class="icon" id="liOpen">
+                    <a aria-label="Open the menu" tabindex="0">
+                        <i id="menuIcon" aria-hidden="true" data-icon="&#9776;" class="fa-solid fa-bars"></i>
+                    </a>
+                </li>
+                <li class="icon" style="display: none;" id="liClose">
+                    <a aria-label="menuIconClose the menu" tabindex="0">
+                        <i id="menuIconClose" aria-hidden="true" data-icon="&#10060;" class="fa-solid fa-x"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul id="mainMenu">    
+                <li><a href="#">About</a></li>
+                <li><a class="linkMoviePicker" href="moviepicker.html">Pick a Movie</a></li>
             </ul>
         </nav>
 
     </header>
-    <main>
-
+    <main class="home">
         <h1>Movie recommendation quiz</h1>
-        <p></p>
+        <p>You can’t decide between thousands of movies available for streaming? Answer 6 questions and let us do the work!</p>
         <!-- Text -->
-        <h2><a id="btMoviePicker" href="/project1/moviepicker.html">Let's Pick a Movie</a></h2>
+        <h2 class="headingMoviePickerBt"><a id="btMoviePicker" class="btMoviePicker" href="moviepicker.html">Let's Pick a Movie</a></h2>
         
     </main>
     <footer>
 
     </footer>
-   
+    <script src="script.js"></script>
 </body>
 </html>
