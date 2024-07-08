@@ -24,11 +24,11 @@
 @font-face {
     font-family: "Montserrat-SemiBold";
     src:
-      local("Montserrat-Bold"),
+      local("Montserrat-SemiBold"),
       url("fonts/Montserrat-SemiBold.ttf") format("ttf");
 }
 
-/* @font-face {
+@font-face {
     font-family: 'HelveticaFontBold';
     src: local('Helvetica');
     font-weight: 600;
@@ -38,7 +38,7 @@
     font-family: 'tertiaryFontBold';
     src: local('Arial');
     font-weight: 600;
-} */
+}
 
 :root {
     --white: #F4F4F4;
@@ -53,16 +53,15 @@
     font-family: "Montserrat-Regular", Arial, sans-serif;
 }
 
-/* * {
-    overflow: auto;
-} */
-
 body {
     background-image: url("images/movies_background.webp");
 }
 
 h1 {
     font-family: Lovelo, Arial, sans-serif;
+    text-align: center;
+    margin: 2rem 0 1rem 0;
+    font-size: 2rem;
 }
 
 h2 {
@@ -91,75 +90,117 @@ strong {
 
 /* MENU */
 
-
 nav {
     background-color: var(--blackBackground);
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    
 }
 
 nav ul {
     display: flex;
+    column-gap: 1rem;
+}
+
+nav ul#topMenu {
+    justify-content: space-between;
+}
+
+nav ul#mainMenu {
     justify-content: flex-end;
 }
 
 nav ul li {
     align-content: center;
+    margin: 1rem 0;
 }
 
 .logoImage {
-    width: 20%;
+    width: 100%;
 }
+
+/* .logoImage img {
+    margin: 1rem;
+} */
 
 nav ul li a {
     display: inline-block;
-    padding: 2rem;
+    padding: 1rem;
     font-size: 1.25rem;
 }
 
-.icon i {
+nav ul li a:hover {
+    color: var(--colorful);
+}
+
+a.linkMoviePicker {
+    color: var(--white);
+    background-color: var(--colorful);
+    border-radius: var(--borderRadius);
+}
+
+a.linkMoviePicker:hover {
+    background-color: var(--blackBackground);
+    color: var(--colorful);
+}
+
+.icon a i {
     font-size: inherit;
+    display: inline-block;
 }
 
-.logoImage img {
-
-}
-
-@media only screen and (min-width: 1025px) {
-    .logoImage {
-        width: 25%;
+@media only screen and (min-width: 769px) {
+    
+    li.icon {
+        display: none;
     }
+
+    .logoImage {
+        width: 75%;
+    }
+
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
     nav {
-        
+        flex-direction: column;
     }
 
-   
-    .logoImage {
-        width: 20%;
+    nav ul#mainMenu {
+        flex-direction: column;
+    }
+
+    nav ul#mainMenu {
+        text-align: right;
+        display: none;
     }
 }
-/* MOVIE PICKER */
 
-#btMoviePicker {
+/* HOME PAGE */
+
+.btMoviePicker {
     background-color: var(--colorful);
     margin: 0 auto;
     padding: 1rem;
     border-radius: var(--borderRadius);
 }
 
-main #btMoviePicker a {
-    text-decoration: none;
+main.home p, main.home h2 {
+    text-align: center;
 }
 
-#btMoviePicker:hover {
+h2 .btMoviePicker {
+    text-decoration: none;
+    margin: 2rem auto;
+    display: inline-block;
+}
+
+.btMoviePicker:hover {
     color: var(--colorful);
     background-color: var(--blackBackground);
 }
 
+/* MOVIE PICKER */
 
 #moviePicker {
     background-color: var(--blackBackground);
@@ -168,6 +209,7 @@ main #btMoviePicker a {
 
 #moviePickerForm {
     min-width: 60%;
+    max-width: 100%;
     padding-top: 20vh;
     display: flex;
     align-items: center;
@@ -343,6 +385,17 @@ section.question label:hover, section.question .btNext:hover, label.checked, #bt
     text-align: center;
     margin-top: 2rem;
 }
+
+#elRestartButton {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #elRestartButton div {
+    text-align: center;
+} */
 
 @media only screen and (max-width: 768px) {
     .movieColumns {

@@ -2,6 +2,7 @@ let btMoviePickerStart = document.querySelector("#btMoviePicker");
 let contentMoviePicker = document.querySelector("#moviePicker");
 let btSendMovieForm = document.querySelector("#btSendMovieForm");
 let formMoviePicker = document.querySelector("#moviePickerForm");
+let elRestartButton = document.querySelector("#elRestartButton");
 let labelFieldsMoviePicker = document.querySelectorAll("#moviePickerForm label");
 let inputFieldsMoviePicker = document.querySelectorAll("#moviePickerForm input");
 let btNext = document.querySelectorAll("#moviePickerForm .btNext");
@@ -31,7 +32,6 @@ let tagsToText = {
     franchise: "part of a franchise",
     fantasy: "Fantasy"
 }
-
 
 // show buttons and check input fields in form
 // tbd: treat Any Genre button like radio button
@@ -79,7 +79,9 @@ function showSection() {
 
 function closeModal() {
     elMovieModal.classList.add("hide");
-    contentMoviePicker.classList.remove("hide");
+    // contentMoviePicker.classList.remove("hide");
+    document.querySelector("header nav").classList.remove("hide");
+    elRestartButton.classList.remove("hide");
 }
 
 // fetch data from API
@@ -191,6 +193,7 @@ async function filterMovies(movieData, formData) {
     let oldResult = [];
     if (formData.genres.length > 0 && !formData.genres.includes("anyGenre")) {
         oldResult = [...result];
+        // TBD: implement another filter logic that returns an array of movies that match the MOST genres from the form data
         let shuffledGenres = formData.genres.sort((a, b) => 0.5 - Math.random());
         result = shuffledData.filter( (movie) => {
             return movie.genreList.some( (item) => {
@@ -246,6 +249,7 @@ function showMovie(movie, formData) {
     contentMoviePicker.classList.add("hide");
     let content = ``;
     if (!movie) {
+        // alternativly: put the html inside the moviepicker.html and populate the fields via innerHTML/textContent
         content += `
         <section class="frame noResults">
             <section>
@@ -311,15 +315,21 @@ function showMovie(movie, formData) {
         }
         content += `
         <section class="watchLink">
-        <a id="btMoviePicker" href="/project1/moviepicker.html"><i class="fa-solid fa-arrows-rotate"></i> Restart the Movie Picker</a></section>
+            <a id="btMoviePicker" href="/project1/moviepicker.html"><i class="fa-solid fa-arrows-rotate"></i> Restart the Movie Picker</a>
+        </section>
         <div id="closeBt"><i class="fa-solid fa-x"></i></div>
         </section>
         `;
+        // TBD: Get another movie recommandation
+        // <a id="btRestartMoviePicker" href="#"><i class="fa-solid fa-arrows-rotate"></i>Get Another Movie Recommandation</a>
+        // document.querySelector("#btRestartMoviePicker").addEventListener("click", filterMovies(movieData, formData))
         
     }
     console.log(formData);
     console.log(movie);
     elMovieModal.innerHTML = content;
+    contentMoviePicker.classList.add("hide");
+    document.querySelector("header nav").classList.add("hide");
     document.querySelector("#closeBt").addEventListener("click", closeModal);
 }
 
@@ -348,11 +358,27 @@ function createResultTags(movie, formData, dataCategory) {
 }
 
 async function callPopulateGenres() {
+    console.log("inside function2");
     await getData(urlShows, populateGenres);
+
+    // for debugging
+    // activate form and populate with diffrent values .value = ""
+    // alternative: autofill (google extension)
+    // formMoviePicker.querySelector('input[value="netflix"]').checked = true;
+    // formMoviePicker.querySelector('input[value="prime"]').checked = true;
+    // formMoviePicker.querySelector('input[value="happy"]').checked = true;
+    // formMoviePicker.querySelector('input[value="friends"]').checked = true;
+    // formMoviePicker.querySelector('input[value="drama"]').checked = true;
+    // formMoviePicker.querySelector('input[value="20"]').checked = true;
+    // formMoviePicker.querySelector('input[value="book"]').checked = true;
+    // pickAMovie();
 }
 callPopulateGenres()
 // await getData(urlShows, populateGenres);
 console.log("Outside Function");
+
+
+// EVENT LISTENERS
 
 for (let inputfield of inputFieldsMoviePicker) {
     inputfield.addEventListener("click", showNextButton);
@@ -368,18 +394,6 @@ for (let bt of btBack) {
 btSendMovieForm.addEventListener("click", pickAMovie);
 
 // For Debugging:
-
-// activate form and populate with diffrent values .value = ""
-// alternative: autofill (google extension)
-// formMoviePicker.querySelector('input[value="netflix"]').checked = true;
-// formMoviePicker.querySelector('input[value="prime"]').checked = true;
-// formMoviePicker.querySelector('input[value="happy"]').checked = true;
-// formMoviePicker.querySelector('input[value="friends"]').checked = true;
-// // formMoviePicker.querySelector('input[value="drama"]').checked = true;
-// formMoviePicker.querySelector('input[value="20"]').checked = true;
-// formMoviePicker.querySelector('input[value="book"]').checked = true;
-
-// pickAMovie();
 
 // let formData =
 // {
