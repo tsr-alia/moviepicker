@@ -149,11 +149,6 @@ a.linkMoviePicker:hover {
     color: var(--colorful);
 }
 
-.icon a i {
-    font-size: inherit;
-    display: inline-block;
-}
-
 @media only screen and (min-width: 769px) {
     
     li.icon {
@@ -190,9 +185,12 @@ a.linkMoviePicker:hover {
     }
 
     nav ul li a {
-        display: inline-block;
         padding: 0.5rem;
         font-size: 1rem;
+    }
+
+    nav ul li a i {
+        font-size: 1.25rem;
     }
 }
 

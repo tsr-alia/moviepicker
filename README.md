@@ -28,5 +28,5 @@ Use users' watched and favourite lists to individualize filtering for them
 
 DEPENDENCIES
 
-Local API: Use moviepicker.json at http://localhost:3000/ (put the file in a seperate folder and start a json server by typing: json-server --watch movies.json)
+Local API: Use moviepicker.json at http://localhost:3000/ (put the file in a seperate folder and start a json server with node.js by typing: json-server --watch movies.json)
 Font Awesome: Download fontawesome-free-6.5.2-web/css/all.min.css from https://fontawesome.com/ and use at ../assests/fontawesome/fontawesome-free-6.5.2-web/css/all.min.css

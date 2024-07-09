@@ -56,7 +56,7 @@ function showNextButton() {
     let id = this.getAttribute("data-id");
     let button = document.querySelector(`.btNext#${id}`);
     let inputFields = formMoviePicker.querySelectorAll(`[data-id-section="${id}"] input`);
-    let fieldStatus;
+    let fieldStatus = "unchecked";
     for (let field of inputFields) {
         if (field.checked) {
             fieldStatus = "checked";
@@ -174,7 +174,7 @@ function grabFormData() {
 
 // create query string to fetch a selection of movies
 function createQueryString(formData) {
-    // tbd dynamically set streaming location
+    // tbd dynamically set streaming location via browser or user input/account
     let streamingLocation = "de";
     let streamingQuery = formData.streaming.join("|"); 
     let queryURL = urlShows + `?streaming_${streamingLocation}_like=(${streamingQuery})&mood_like=${formData.mood}&occasion_like=${formData.occasion}`;
@@ -182,15 +182,16 @@ function createQueryString(formData) {
 }
 // further filter selection of movies and return one result
 async function filterMovies(movieData, formData) {
-    console.log("movie Data before filterung:");
-    console.log(movieData);
     if (movieData.length === 0) {
         return false;
     }
+    // TBD: make alternate version where filters are applied at once
     let result = [...movieData];
     let shuffledData = movieData.sort((a, b) => 0.5 - Math.random());
     let oldResult = [];
+    // filter movies via genres if applicable
     if (formData.genres.length > 0 && !formData.genres.includes("anyGenre")) {
+        // copy result in case filter returns empty array
         oldResult = [...result];
         // TBD: implement another filter logic that returns an array of movies that match the MOST genres from the form data
         let shuffledGenres = formData.genres.sort((a, b) => 0.5 - Math.random());
@@ -203,6 +204,7 @@ async function filterMovies(movieData, formData) {
             result = [...oldResult];
         }    
     }
+    // filter remaining movies by release year
     if (result.length > 1) {
         oldResult = [...result];
         result = movieData.filter( (movie) => {
@@ -212,7 +214,7 @@ async function filterMovies(movieData, formData) {
             result = [...oldResult];
         }    
     }
-
+    // filter remaining movies by additional tags
     if (result.length > 1 && formData.additionalTags.length > 0) {
         let shuffledTags = formData.additionalTags.sort((a, b) => 0.5 - Math.random());
         oldResult = [...result];
@@ -224,10 +226,11 @@ async function filterMovies(movieData, formData) {
         if (result.length === 0) {
             result = [...oldResult];
         }    
-    }  
+    }
+    // shuffel results to get random movie that matches the filters
     result.sort((a, b) => 0.5 - Math.random());
-    console.log("final result(s): ");
-    console.log(result);
+    // console.log("final result(s): ");
+    // console.log(result);
     return result[0];
 }
 // check if the release year matches the users' input
@@ -248,7 +251,7 @@ function showMovie(movie, formData) {
     contentMoviePicker.classList.add("hide");
     let content = ``;
     if (!movie) {
-        // alternativly: put the html inside the moviepicker.html and populate the fields via innerHTML/textContent
+        // alternativly: put the html inside the moviepicker.html and populate the fields with innerHTML/textContent
         content += `
         <section class="frame noResults">
             <section>
@@ -324,8 +327,6 @@ function showMovie(movie, formData) {
         // document.querySelector("#btRestartMoviePicker").addEventListener("click", filterMovies(movieData, formData))
         
     }
-    console.log(formData);
-    console.log(movie);
     elMovieModal.innerHTML = content;
     contentMoviePicker.classList.add("hide");
     document.querySelector("header nav").classList.add("hide");
@@ -337,6 +338,7 @@ function createResultTags(movie, formData, dataCategory) {
     for (let item of movie[dataCategory]) {
         // check if users formData and data in movie object match
         let tagClass = "tag";
+        // can be simplified when data is organized diffrently 
         if (dataCategory === "genres") {
             tagList += `<li class="${tagClass}">${item.name}`
             if (formData[dataCategory].includes(item.id)) {

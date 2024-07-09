@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Picker</title>
     <link rel="stylesheet" href="../assests/fontawesome/fontawesome-free-6.5.2-web/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="image/x-icon" href="images/moviepicker_favicon.ico">
+    <title>Movie Picker</title>
+    <link rel="icon" href="image/x-icon" href="images/moviepicker_favicon.png">
 </head>
 <body>
     <header>
@@ -34,7 +34,6 @@
     
     </header>
     <main>
-        
         <section id="moviePicker">
             <form id="moviePickerForm">
                 <!-- Mood -->
@@ -42,23 +41,28 @@
                     <p class="questionText">1. How are you today?</p>
                     <label for="happy">
                         <input type="radio" id="happy" name="mood" value="happy" data-id="mood">
-                    Happy</label>
+                        Happy</label>
                     <label for="neutral">
                         <input type="radio" id="neutral" name="mood" value="neutral" data-id="mood">
-                    Neutral</label>
+                        Neutral</label>
                     <label for="sad">
                         <input type="radio" id="sad" name="mood" value="sad" data-id="mood">
-                    Sad</label>
+                        Sad</label>
                     <p><button type="button" class="btNext hide" id="mood" data-id-hide="question1" data-id-show="question2">Next</button></p>
                 </section>
                 <!-- Occasion -->
                 <section class="question hide" id="question2" data-id-section="occasion">
                     <p class="questionText">2. Who are you watching with?</p>
-                    <label for="alone"><input type="radio" id="alone" name="occasion" value="alone" data-id="occasion">I am watching by myself.</label>
-                    <label for="date"><input type="radio" id="date" name="occasion" value="date" data-id="occasion">Looking for a movie to watch on a date.</label>
-                    <label for="friends"><input type="radio" id="friends" name="occasion" value="friends" data-id="occasion">Having a movie night with friends.</label>
-                    <label for="withFamily"><input type="radio" id="withFamily" name="occasion" value="withFamily" data-id="occasion">I am watching with my parents or other relatives.</label>
-                    <label for="withChildren"><input type="radio" id="withChildren" name="occasion" value="withChildren" data-id="occasion">Watching a movie with children.</label>
+                    <label for="alone"><input type="radio" id="alone" name="occasion" value="alone" data-id="occasion">I am watching by
+                        myself.</label>
+                    <label for="date"><input type="radio" id="date" name="occasion" value="date" data-id="occasion">Looking for a movie to
+                        watch on a date.</label>
+                    <label for="friends"><input type="radio" id="friends" name="occasion" value="friends" data-id="occasion">Having a movie
+                        night with friends.</label>
+                    <label for="withFamily"><input type="radio" id="withFamily" name="occasion" value="withFamily" data-id="occasion">I am
+                        watching with my parents or other relatives.</label>
+                    <label for="withChildren"><input type="radio" id="withChildren" name="occasion" value="withChildren"
+                            data-id="occasion">Watching a movie with children.</label>
                     <p>
                         <button type="button" class="btNext hide" id="occasion"  data-id-hide="question2" data-id-show="question3">Next</button>
                         <button type="button" class="btBack" data-id-hide="question2" data-id-show="question1"><i class="fa-solid fa-arrow-left"></i>Go Back</button>
