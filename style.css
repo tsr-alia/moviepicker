@@ -234,15 +234,11 @@ h2 .btMoviePicker {
     justify-content: center;
 }
 
-section.question {
-    max-width: 100%;
-}
-
 /* Form Buttons, Input and Questions */
 section.question label, section.question .questionText, .btNext, #btSendMovieForm {
     font-family: "Montserrat-Medium", Arial, sans-serif;
     padding: 1rem;
-    margin: 0.5rem;
+    margin: 0.5rem 0;
     border: 2px solid var(--white);
     border-radius: 4px;
     background-color: var(--blackBackground);

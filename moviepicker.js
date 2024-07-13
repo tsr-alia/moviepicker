@@ -41,7 +41,7 @@ function styleCheckedInputFields() {
         let radioButtons = formMoviePicker.querySelectorAll(`[data-id-section="${idSection}"] input`);
         for (let radioButton of radioButtons) {
             if (!radioButton.checked) {
-                document.querySelector(`label[for="${radioButton.id}"`).classList.remove("checked");
+                document.querySelector(`label[for="${radioButton.id}"`).classList.remove("checked");    
             } else {
                 document.querySelector(`label[for="${radioButton.id}"`).classList.add("checked");
             }
