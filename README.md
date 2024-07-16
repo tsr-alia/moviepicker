@@ -1,8 +1,25 @@
 # Movie Picker
 
-Website that picks out a movie for the user to watch based on their answers to 6 questions. The website is based on <https://pickamovieforme.com/> and built for educational purposes only.  
-The data is generated from the [Streaming Availability API](https://www.movieofthenight.com/about/api/), stored in a local JSON file and tagged with additional information.
+Website that picks out a movie for the user to watch based on their answers to 6 questions. The website is based on <https://pickamovieforme.com/> and built for educational purposes only. The data is generated from the [Streaming Availability API](https://www.movieofthenight.com/about/api/), stored in a local JSON file and tagged with additional information.
 
+## Usage
+
+### Local API
+
+- Install Node.js and npm
+- Install JSON Server: Execute the command `npm install -g json-server`
+- Download all files from the repository
+- Move the file `moviepicker.json` in a separate folder 
+- Inside that separate folder, create a JSON server by typing: `json-server --watch moviepicker.json`
+- The JSON server runs at <http://localhost:3000/> by default
+
+### Font Awesome
+
+- Font Awesome: Download `fontawesome-free-6.5.2-web/css/all.min.css` from <https://fontawesome.com/> and use at ../assets/fontawesome/fontawesome-free-6.5.2-web/css/all.min.css
+
+### Start the Website
+
+To start the website open `index.html` with your browser.
 
 ## Current Features
 
@@ -45,20 +62,3 @@ The data is generated from the [Streaming Availability API](https://www.movieoft
 
 - [ ] Let users save their favourite movies and watched movies to their account
 - [ ] Use users' watched and favourite lists to individualize filtering for them
-
-## Dependencies
-
-### Local API
-
-- Install Node.js and npm
-- Install JSON Server: Execute the command `npm install -g json-server`
-- Download all files from the repository
-- Move the file `moviepicker.json` in a separate folder 
-- Inside that separate folder, create a JSON server by typing: `json-server --watch movies.json`
-- The JSON server runs at <http://localhost:3000/> by default
-
-### Font Awesome
-
-- Font Awesome: Download `fontawesome-free-6.5.2-web/css/all.min.css` from <https://fontawesome.com/> and use at ../assets/fontawesome/fontawesome-free-6.5.2-web/css/all.min.css
-
-To start the website open `index.html` with your browser.
